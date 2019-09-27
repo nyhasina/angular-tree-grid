@@ -1,7 +1,21 @@
-.cdk-tree-node--expanded {
+.cdk-tree-node--expanded td {
     padding-left: 10px;
 }
 
 .cdk-tree-node--collapsed {
     display: none;
+}
+
+.cdk-tree,
+.cdk-tree-node,
+.cdk-nested-tree-node {
+    display: contents;
+}
+
+[cdkTreeNodeToggle] {
+    cursor: pointer;
+}
+
+table {
+    min-width: 100%;
 }
