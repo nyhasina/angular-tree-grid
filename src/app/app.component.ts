@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { ArrayDataSource } from '@angular/cdk/collections';
-
-interface Node<T> {
-    children?: T[];
-}
+import { Node } from './tree-grid/tree-grid.component';
 
 interface Category extends Node<Category> {
     name: string;
@@ -69,8 +64,5 @@ const TREE_DATA: Category[] = [
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    treeControl = new NestedTreeControl<Category>(node => node.children);
-    dataSource = new ArrayDataSource(TREE_DATA);
-    hasChildren = (_: number, node: Category) =>
-        !!node.children && node.children.length;
+    treeData = TREE_DATA;
 }

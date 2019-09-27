@@ -1,0 +1,42 @@
+<table>
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Parent</td>
+        </tr>
+    </thead>
+    <tbody>
+        <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            <cdk-nested-tree-node *cdkTreeNodeDef="let node">
+                <tr>
+                    <td>{{ node.name }}</td>
+                    <td>{{ node.name }}</td>
+                </tr>
+            </cdk-nested-tree-node>
+
+            <cdk-nested-tree-node *cdkTreeNodeDef="let node; when: hasChildren">
+                <tr
+                    cdkTreeNodeToggle
+                    [attr.aria-label]="'toggle' + node.name + 'Node'"
+                >
+                    <td>{{ node.name }}</td>
+                    <td>{{ node.parent ? node.parent : node.name }}</td>
+                </tr>
+                <tr
+                    [class.cdk-tree-node--collapsed]="
+                        !treeControl.isExpanded(node)
+                    "
+                    [class.cdk-tree-node--expanded]="
+                        treeControl.isExpanded(node)
+                    "
+                >
+                    <td colspan="2">
+                        <table>
+                            <ng-container cdkTreeNodeOutlet></ng-container>
+                        </table>
+                    </td>
+                </tr>
+            </cdk-nested-tree-node>
+        </cdk-tree>
+    </tbody>
+</table>
